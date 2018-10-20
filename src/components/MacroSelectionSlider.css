@@ -1,0 +1,69 @@
+.MacroSelectionSlider__container {
+  position: relative;
+  padding: 20px 0px;
+}
+
+.MacroSelectionSlider__sectionValue {
+  position: absolute;
+  top: 31px;
+}
+
+/* style overrides for react input range component */
+.input-range__slider {
+  border-radius: 0px !important;
+  padding: 15px 4px;
+  top: -28px !important;
+  transition: none !important;
+  border: none !important;
+  /* CUSTOMIZE: base background color for popout menu */
+  background-color: white !important;
+}
+
+.input-range__slider:active {
+  transform: none !important;
+}
+
+.input-range__slider-container:nth-of-type(1) .input-range__slider {
+  left: -6px !important;
+}
+
+.input-range__slider-container:nth-of-type(2) .input-range__slider {
+  left: 6px !important;
+}
+
+.input-range__slider::after {
+  margin-left: 30px;
+  /* CUSTOMIZE: base background color for popout menu */
+  color: white;
+  font-weight: bold;
+}
+
+.input-range__slider-container:nth-of-type(1) .input-range__slider::after {
+  content: 'C';
+}
+
+.input-range__slider-container:nth-of-type(2) .input-range__slider::after {
+  content: 'F';
+}
+
+.input-range__track {
+  height: 30px !important;
+  /* CUSTOMIZE: primary color */
+  background-color: #da7b55 !important;
+  border-radius: 0px !important;
+}
+
+.input-range__track--background::before {
+  content: 'P';
+  position: absolute;
+  top: 6px;
+  left: 9px;
+  /* CUSTOMIZE: base background color for popout menu */
+  color: white;
+  font-weight: bold;
+
+}
+
+.input-range__label-container {
+  display: none;
+}

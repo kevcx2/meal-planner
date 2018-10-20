@@ -1,0 +1,16 @@
+.MacroPicker__macroSectionsContainer {
+  margin: 20px 0px 5px 0px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.MacroPicker__macroSection {
+  width: 100px;
+  font-size: 24px;
+  /* CUSTOMIZE: light text color; */
+  color: #585858;
+}
+
+.MacroPicker__macroSectionTitle {
+  font-weight: bold;
+}

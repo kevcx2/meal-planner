@@ -1,0 +1,43 @@
+.CaloriePicker__input {
+  font-size: 50px;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid black;
+  padding: 0px 15px;
+  width: 120px;
+  cursor: pointer;
+}
+
+.CaloriePicker__input::-webkit-outer-spin-button,
+.CaloriePicker__input::-webkit-inner-spin-button {
+  appearance: none;
+  margin: 0;
+}
+
+.CaloriePicker__arrowsContainer {
+  display: inline-block;
+  margin-bottom: -19px;
+}
+
+.CaloriePicker__inputArrowContainer {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.CaloriePicker__inputArrow {
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
+
+.CaloriePicker__inputArrow--up {
+  border-width: 0 8px 16px 8px;
+  /* CUSTOMIZE: primary color */
+  border-color: transparent transparent #da7b55 transparent;
+}
+
+.CaloriePicker__inputArrow--down {
+  border-width: 16px 8px 0 8px;
+  /* CUSTOMIZE: primary color */
+  border-color: #da7b55 transparent transparent transparent;
+}
