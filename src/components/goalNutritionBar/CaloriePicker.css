@@ -1,11 +1,12 @@
 .CaloriePicker__input {
-  font-size: 50px;
+  font-size: 46px;
   border: none;
   outline: none;
   border-bottom: 1px solid black;
-  padding: 0px 15px;
-  width: 120px;
+  padding: 0px 12px;
+  width: 112px;
   cursor: pointer;
+  text-align: center;
 }
 
 .CaloriePicker__input::-webkit-outer-spin-button,

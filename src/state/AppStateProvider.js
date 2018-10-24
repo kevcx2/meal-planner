@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 
 import { ContextProvider } from './context';
-import { createTargetState } from './target/state';
-import { createTargetActions } from './target/actions';
+import { createGoalState } from './goal/state';
+import { createGoalActions } from './goal/actions';
+import { createMenuState } from './menu/state';
+import { createMenuActions } from './menu/actions';
 
 class AppStateProvider extends Component {
   state = {
-    ...createTargetState(),
-    ...createTargetActions(this),
+    ...createGoalState(),
+    ...createGoalActions(this),
+    ...createMenuState(),
+    ...createMenuActions(this),
   };
 
   render() {

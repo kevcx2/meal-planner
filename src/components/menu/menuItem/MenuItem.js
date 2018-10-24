@@ -1,0 +1,73 @@
+import React, { Component } from 'react';
+import ClampLines from 'react-clamp-lines';
+
+import MenuImagePlaceholder from './MenuImagePlaceholder';
+import ThumbIcon from './ThumbIcon';
+
+import '../../../button.css';
+import './MenuItem.css';
+
+class MenuItem extends Component {
+  render() {
+    const { menuItem } = this.props;
+
+    return (
+      <div className="MenuItem__menuItemContainer">
+        <div className="MenuItem__menuImageContainer">
+          <MenuImagePlaceholder />
+        </div>
+        <div className="MenuItem__menuItemName">
+          <ClampLines
+            text={menuItem.name}
+            lines="2"
+            buttons={false}
+          />
+        </div>
+        <div className="MenuItem__menuItemNutrition">
+          {`Cals:${menuItem.cals} P:${menuItem.protein} C:${menuItem.carbs} F:${menuItem.fat}`}
+        </div>
+        {this.renderMenuItemFooter()}
+      </div>
+    );
+  }
+
+  renderMenuItemFooter() {
+    const { menuItem, isInMealPlan } = this.props;
+
+    const thumbsUpIconClass =
+      `MenuItem__menuItemPreference${
+        menuItem.liked ? ' MenuItem__menuItemPreference--active' : ''
+      }`;
+    const thumbsDownIconClass =
+      `MenuItem__menuItemPreference MenuItem__menuItemPreference--thumbsDown${
+        menuItem.disliked ? ' MenuItem__menuItemPreference--active' : ''
+      }`;
+
+    return (
+      <div className="MenuItem__menuItemFooter">
+        <div>
+          <div className={thumbsUpIconClass} onClick={() => this.props.onLike(menuItem.id)}>
+            <ThumbIcon />
+          </div>
+          <div className={thumbsDownIconClass} onClick={() => this.props.onDislike(menuItem.id)}>
+            <ThumbIcon />
+          </div>
+        </div>
+        { isInMealPlan ? (
+          <button
+            className="button button--secondary"
+            onClick={() => this.props.onRemoveFromMealPlan(menuItem.id)}
+          >
+            Remove
+          </button>
+        ) : (
+          <button className="button" onClick={() => this.props.onAddToMealPlan(menuItem.id)}>
+            Add
+          </button>
+        )}
+      </div>
+    );
+  }
+}
+
+export default MenuItem;

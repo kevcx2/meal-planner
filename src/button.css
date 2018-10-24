@@ -1,0 +1,31 @@
+/* Button utility classes */
+.button {
+  padding: 0px 15px;
+  height: 35px;
+  border: none;
+  outline: none;
+  /* CUSTOMIZE: primary color */
+  background-color: #da7b55;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.button:hover {
+  opacity: .9;
+}
+
+.button:active {
+  opacity: .8;
+}
+
+.button--secondary {
+  background-color: transparent;
+  /* CUSTOMIZE: primary color */
+  color: #da7b55;
+}
+
+.button--secondary:hover {
+  text-decoration: underline;
+}
