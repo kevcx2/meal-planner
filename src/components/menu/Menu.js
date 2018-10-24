@@ -20,10 +20,28 @@ class Menu extends Component {
     });
   }
 
+  getMenuToDisplay = (fullMenu, mealPlan) => {
+    if (this.state.currentTab === MENU_TAB) {
+      return fullMenu;
+    } else {
+      return fullMenu.filter((menuItem => mealPlan.includes(menuItem.id)));
+    }
+  }
+
   render() {
     return (
       <ContextConsumer>
         {(context) => {
+          const {
+            mealPlan,
+            toggleLike,
+            toggleDislike,
+            addToMealPlan,
+            removeFromMealPlan,
+          } = context;
+
+          const menu = this.getMenuToDisplay(context.menu, mealPlan);
+
           return (
             <div className="Menu__container">
               <MenuTabs
@@ -31,12 +49,12 @@ class Menu extends Component {
                 onChange={this.onChangeTab}
               />
               <MenuList
-                menu={context.menu}
-                mealPlan={context.mealPlan}
-                onLike={context.toggleLike}
-                onDislike={context.toggleDislike}
-                onAddToMealPlan={context.addToMealPlan}
-                onRemoveFromMealPlan={context.removeFromMealPlan}
+                menu={menu}
+                mealPlan={mealPlan}
+                onLike={toggleLike}
+                onDislike={toggleDislike}
+                onAddToMealPlan={addToMealPlan}
+                onRemoveFromMealPlan={removeFromMealPlan}
               />
             </div>
           );

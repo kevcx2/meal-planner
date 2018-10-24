@@ -1,6 +1,12 @@
 .MacroSelectionSlider__container {
   position: relative;
   padding: 20px 0px;
+  -webkit-touch-callout: none;
+  -webkit-user-callout: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-modify: none;
+  -webkit-highlight: none;
 }
 
 .MacroSelectionSlider__sectionValue {

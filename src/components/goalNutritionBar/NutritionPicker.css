@@ -1,0 +1,17 @@
+.NutritionPicker__closePopup {
+  font-size: 21px;
+  cursor: pointer;
+  padding: 5px;
+  display: inline;
+  float: right;
+  font-weight: bold;
+  /* CUSTOMIZE: light text color; */
+  color: #585858;
+}
+
+.NutritionPicker__header {
+  text-align: center;
+  font-size: 32px;
+  /* CUSTOMIZE: light text color; */
+  color: #585858;
+}

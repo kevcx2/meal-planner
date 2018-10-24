@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import Popup from "reactjs-popup";
 
 import { ContextConsumer } from '../../state/context';
-import CaloriePicker from './CaloriePicker';
-import MacroPicker from './MacroPicker';
+import NutritionPicker from './NutritionPicker';
 
 import './GoalNutritionBar.css';
 
@@ -13,6 +12,26 @@ const CALS_PER_GRAM_CARBS = 4;
 const CALS_PER_GRAM_FAT = 9;
 
 class GoalNutritionBar extends Component {
+  state = {
+    showNutritionPicker: false,
+  };
+
+  onOpenNutritionPicker = () => {
+    this.setState({
+      showNutritionPicker: true,
+    });
+
+    document.body.classList.add('noScroll');
+  }
+
+  onCloseNutritionPicker = () => {
+    this.setState({
+      showNutritionPicker: false,
+    });
+
+    document.body.classList.remove('noScroll');
+  }
+
   getMealPlanNutrition(mealPlan, menu) {
     let mealPlanCals = 0;
     let mealPlanProtein = 0;
@@ -35,6 +54,7 @@ class GoalNutritionBar extends Component {
     };
   }
 
+  // TODO: extract into util
   getMacroGramsFromPercent(cals, percentProtein, percentCarbs, percentFat) {
     const gramsProtein =
       parseInt((cals * (percentProtein / 100)) / CALS_PER_GRAM_PROTEIN, 10);
@@ -50,11 +70,20 @@ class GoalNutritionBar extends Component {
     };
   }
 
-  render() {    
+  render() {
     return (
       <ContextConsumer>
         {(context) => {
-          const { mealPlan } = context;
+          const {
+            goalCals,
+            goalProtein,
+            goalCarbs,
+            goalFat,
+            changeGoalCals,
+            changeGoalMacros,
+            menu,
+            mealPlan,
+          } = context;
           const hasMealPlan = !!mealPlan.length;
 
           const fixedSpacerClass =
@@ -63,34 +92,41 @@ class GoalNutritionBar extends Component {
             `GoalNutritionBar__bar${hasMealPlan ? ' GoalNutritionBar__bar--large' : ''}`;
 
           return (
-            <React.Fragment>
+            <div>
               <div className={barClass}>
-                <Popup
-                  trigger={this.renderGoalNutritionRow(context)}
-                  className="GoalNutritionBar__nutritionPopup"
-                  modal
-                >
-                  {(onClose) => this.renderNutritionPicker(onClose, context)}
-                </Popup>
-                {this.renderMealPlanNutritionRow(context)}
-                {this.renderGoalVsPlanDifferenceRow(context)}
+                {this.renderGoalNutritionRow(goalCals, goalProtein, goalCarbs, goalFat)}
+                {this.renderMealPlanNutritionRow(mealPlan, menu)}
+                {this.renderNutritionColumnLabels()}
+                <div></div>
               </div>
-              <div className={fixedSpacerClass}></div>
-            </React.Fragment>
+              <Popup
+                trigger={(<div className={fixedSpacerClass}></div>)}
+                className="GoalNutritionBar__nutritionPopup"
+                open={this.state.showNutritionPicker}
+                onClose={this.onCloseNutritionPicker}
+                modal
+
+              >
+                {(onClose) => (
+                  <NutritionPicker
+                    onClose={onClose}
+                    cals={goalCals}
+                    protein={goalProtein}
+                    carbs={goalCarbs}
+                    fat={goalFat}
+                    onChangeCals={changeGoalCals}
+                    onChangeMacros={changeGoalMacros}
+                  />             
+                )}
+              </Popup>
+            </div>
           );
         }}
       </ContextConsumer>
     );
   }
 
-  renderGoalNutritionRow(appContext) {
-    const {
-      goalCals,
-      goalProtein,
-      goalCarbs,
-      goalFat,
-    } = appContext;
-
+  renderGoalNutritionRow(goalCals, goalProtein, goalCarbs, goalFat) {
     const {
       gramsProtein: goalGramsProtein,
       gramsCarbs: goalGramsCarbs,
@@ -104,12 +140,11 @@ class GoalNutritionBar extends Component {
       goalGramsFat,
       'Nutrition Goals: ',
       true,
+      this.onOpenNutritionPicker,
     );
   }
 
-  renderMealPlanNutritionRow(appContext) {
-    const { mealPlan, menu } = appContext;
-
+  renderMealPlanNutritionRow(mealPlan, menu) {
     const hasMealPlan = !!mealPlan.length;
 
     if (hasMealPlan) {
@@ -132,94 +167,41 @@ class GoalNutritionBar extends Component {
     }
   }
 
-  renderGoalVsPlanDifferenceRow(appContext) {
-    const { mealPlan, menu } = appContext;
-    const hasMealPlan = !!mealPlan.length;
-
-    if (hasMealPlan) {
-      const {
-        mealPlanCals,
-        mealPlanProtein,
-        mealPlanCarbs,
-        mealPlanFat
-      } = this.getMealPlanNutrition(mealPlan, menu);
-
-      const {
-        goalCals,
-        goalProtein,
-        goalCarbs,
-        goalFat,
-      } = appContext;
-
-      const {
-        gramsProtein: goalGramsProtein,
-        gramsCarbs: goalGramsCarbs,
-        gramsFat: goalGramsFat
-      } = this.getMacroGramsFromPercent(goalCals, goalProtein, goalCarbs, goalFat);
-
-      const calsDiff = goalCals - mealPlanCals;
-      const proteinDiff = goalGramsProtein - mealPlanProtein;
-      const carbsDiff = goalGramsCarbs - mealPlanCarbs;
-      const fatDiff = goalGramsFat - mealPlanFat;
-
-      return this.renderNutritionRow(
-        calsDiff,
-        proteinDiff,
-        carbsDiff,
-        fatDiff,
-      );
-    } else {
-      return null;
-    }
-  }
-
-  renderNutritionRow(cals, protein, carbs, fat, rowLabel, clickable) {
+  renderNutritionRow(cals, protein, carbs, fat, rowLabel, clickable, onClick) {
     const rowClass =
       `GoalNutritionBar__row${clickable ? ' GoalNutritionBar__row--clickable' : ''}`;
 
     return (
-      <section className={rowClass}>
+      <section className={rowClass} onClick={onClick}>
         <div className="GoalNutritionBar__rowContainer">
           <div className="GoalNutritionBar__rowLabel">{rowLabel}</div>
           {this.renderNutritionDisplaySection(cals, 'Calories')}
-          {this.renderNutritionDisplaySection(`${protein}g`, 'Protein')}
-          {this.renderNutritionDisplaySection(`${carbs}g`, 'Carbs')}
-          {this.renderNutritionDisplaySection(`${fat}g`, 'Fat')}
+          {this.renderNutritionDisplaySection(`${protein}g`)}
+          {this.renderNutritionDisplaySection(`${carbs}g`)}
+          {this.renderNutritionDisplaySection(`${fat}g`)}
         </div>
       </section>
     );
   }
 
-  renderNutritionDisplaySection(value, description) {
-    return (
-      <div className="GoalNutritionBar__rowSection">
-        <div>{value}</div>
-        <div className="GoalNutritionBar__rowSectionLabel">{description}</div>
+  renderNutritionColumnLabels() {
+    return(
+      <div className="GoalNutritionBar__row GoalNutritionBar__row--columnLabels">
+      <div className="GoalNutritionBar__rowContainer GoalNutritionBar__rowContainer--columnLabels">
+        <div className="GoalNutritionBar__rowLabel"></div>
+        {this.renderNutritionDisplaySection('Calories')}
+        {this.renderNutritionDisplaySection('Protein')}
+        {this.renderNutritionDisplaySection('Carbs')}
+        {this.renderNutritionDisplaySection('Fat')}
+      </div>
       </div>
     );
   }
 
-  renderNutritionPicker(onClose, appContext) {
-    const {
-      goalCals,
-      goalProtein,
-      goalCarbs,
-      goalFat,
-      changeGoalCals,
-      changeGoalMacros,
-    } = appContext;
-
+  renderNutritionDisplaySection(value) {
     return (
-      <div>
-        <div className="GoalNutritionBar__closePopup" onClick={onClose}>X</div>
-        <CaloriePicker defaultValue={goalCals} onChange={changeGoalCals}/>
-        <MacroPicker
-          totalCalories={goalCals}
-          protein={goalProtein}
-          carbs={goalCarbs}
-          fat={goalFat}
-          onChange={changeGoalMacros}
-        />
+      <div className="GoalNutritionBar__rowSection">
+        <div>{value}</div>
       </div>
     );
   }

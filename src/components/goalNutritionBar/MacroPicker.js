@@ -53,19 +53,4 @@ class MacroPicker extends Component {
   }
 }
 
-        // <div>{`protein: ${percentProtein}%`}</div>
-        // <div>{`carbs: ${percentCarbs}%`}</div>
-        // <div>{`fat: ${percentFat}%`}</div>
-        // <div>
-        //   <div className="MacroPicker__macroSection MacroPicker__macroSection--protein">
-        //     {`${gramsProtein}g`}
-        //   </div>
-        //   <div className="MacroPicker__macroSection MacroPicker__macroSection--carbs">
-        //     {`${gramsCarbs}g`}
-        //   </div>
-        //   <div className="MacroPicker__macroSection MacroPicker__macroSection--fat">
-        //     {`${gramsFat}g`}
-        //   </div>
-        // </div>
-
 export default MacroPicker;

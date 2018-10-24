@@ -23,7 +23,7 @@ class MenuList extends Component {
       const isInMealPlan = this.props.mealPlan.includes(menuItem.id);
 
       return (
-        <Col xs={6} sm={4} md={3} key={menuItem.id}>
+        <Col xs={12} sm={4} md={3} key={menuItem.id}>
           <MenuItem
             menuItem={menuItem}
             isInMealPlan={isInMealPlan}
