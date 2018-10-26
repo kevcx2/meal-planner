@@ -20,7 +20,7 @@ class NutritionPicker extends Component {
     return (
       <div>
         <div className="NutritionPicker__closePopup" onClick={onClose}>X</div>
-        <div className="NutritionPicker__header">Set Nutrition Goals</div>
+        <div className="NutritionPicker__header">Set Nutrition Goal</div>
         <CaloriePicker defaultValue={cals} onChange={onChangeCals}/>
         <MacroPicker
           totalCalories={cals}

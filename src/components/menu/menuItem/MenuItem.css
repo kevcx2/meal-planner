@@ -1,16 +1,23 @@
 .MenuItem__menuItemContainer {
   width: 100%;
   height: 350px;
-  border: 1px solid black;
+  border: 1px solid #d8d8d8;
   padding: 15px;
   margin-bottom: 10px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  background-color: white;
 }
 
 .MenuItem__menuImageContainer {
   height: 60%;
+  background-image: linear-gradient(to right top, #da7b55, #e18c5b, #e79e63, #edaf6c, #f2c078);
+}
+
+.MenuItem__menuImageContainer svg {
+  fill: white;
+  padding: 10px;
 }
 
 .MenuItem__menuItemName {
@@ -18,7 +25,7 @@
 }
 
 .MenuItem__menuItemNutrition {
-
+  color:  #676767;
 }
 
 .MenuItem__menuItemFooter {
@@ -26,7 +33,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top: 1px solid lightgrey;
+  border-top: 1px solid #d8d8d8;
   padding-top: 10px;
 }
 
@@ -34,7 +41,6 @@
   width: 32px;
   display: inline-block;
   margin-right: 12px;
-  /* CUSTOMIZE: temp hover color */
   color: #e6e6e6;
   cursor: pointer;
   transition: color .25s;
@@ -45,12 +51,10 @@
 }
 
 .MenuItem__menuItemPreference:not(.MenuItem__menuItemPreference--active):hover {
-  /* CUSTOMIZE: temp active color */
   color: #b9b9b9;
 }
 
 .MenuItem__menuItemPreference--active {
-  /* CUSTOMIZE: primary color */
   color: #da7b55;
 }
 

@@ -1,0 +1,99 @@
+.NutritionDetailsBar__bar {
+  position: fixed;
+  
+  width: 100%;
+
+  box-shadow: 0px 0px 1px 0px rgba(0,0,0,0.62);
+  background-color: white;
+  z-index: 1;
+  height: 50px;
+  transition: height .25s;
+  overflow: hidden;
+  cursor: pointer;
+
+  background-color: #5c5c5c;
+  color: white;
+  font-weight: bold;
+}
+
+.NutritionDetailsBar__bar:hover {
+  opacity: .95;
+}
+
+.NutritionDetailsBar__bar:active {
+  opacity: .9;
+}
+
+.NutritionDetailsBar__bar--large {
+  height: 85px;
+}
+
+.NutritionDetailsBar__row {
+  display: flex;
+  justify-content: center;
+}
+
+.NutritionDetailsBar__row--columnLabels {
+  margin-top: -10px;
+}
+
+.NutritionDetailsBar__rowContainer {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  padding: 5px 0px 5px 0px;
+}
+
+.NutritionDetailsBar__rowContainer--columnLabels {
+  font-size: 14px;
+}
+
+.NutritionDetailsBar__rowSection {
+  margin-left: 20px;
+  text-align: center;
+  width: 70px;
+  text-align: center;
+}
+
+.NutritionDetailsBar__rowLabel {
+  text-align: right;
+  width: 85px;
+}
+
+/* override popup library settings */
+.NutritionDetailsBar__nutritionPopup {
+  width: 90vw !important;
+  max-width: 750px;
+
+  padding: 20px !important;
+}
+
+/* holds space 'under' the fixed topbar, so content
+   is pushed down below the fixed topbar. Needs to match
+   top bar large height. */
+.NutritionDetailsBar__fixedSpacer {
+  height: 85px;
+  transition: height .3s;
+}
+
+/* Phone screen size styling */
+@media screen and (max-width: 500px) {
+  .NutritionDetailsBar__rowContainer {
+    font-size: 15px;
+  }
+
+  .NutritionDetailsBar__rowContainer--columnLabels {
+    font-size: 13px;
+  }
+
+  .NutritionDetailsBar__rowSection {
+    margin-left: 15px;
+    width: 50px;
+  }
+
+  .NutritionDetailsBar__nutritionPopup {
+    width: 100vw !important;
+    height: 100vh !important;
+    padding: 10px !important;
+  }
+}

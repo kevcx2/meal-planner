@@ -14,6 +14,26 @@ class AppStateProvider extends Component {
     ...createMenuActions(this),
   };
 
+  componentDidMount() {
+    fetch('https://api.apify.com/v1/5iWJ9eWmADqBzvXGX/crawlers/XrSBDvu5s3wEwojnN/lastExec/results?token=pGM3nKkB4ZmSxaSziHEP5PyKp')
+      .then(response => response.json())
+      .then(data => this.receiveMenuData(data));
+  }
+
+  receiveMenuData = (data) => {
+    const menu = data[0].pageFunctionResult.menu;
+
+    menu.forEach((menuItem) => {
+      menuItem.liked = false;
+      menuItem.disliked = false;
+      menuItem.picture = undefined;
+    });
+
+    this.setState({
+      menu,
+    });
+  }
+
   render() {
     return <ContextProvider value={this.state}>
       {this.props.children}

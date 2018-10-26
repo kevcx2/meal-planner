@@ -24,7 +24,7 @@ class MenuItem extends Component {
           />
         </div>
         <div className="MenuItem__menuItemNutrition">
-          {`Cals:${menuItem.cals} P:${menuItem.protein} C:${menuItem.carbs} F:${menuItem.fat}`}
+          {`Cals: ${menuItem.cals} P: ${menuItem.protein}g C: ${menuItem.carbs}g F: ${menuItem.fat}g`}
         </div>
         {this.renderMenuItemFooter()}
       </div>

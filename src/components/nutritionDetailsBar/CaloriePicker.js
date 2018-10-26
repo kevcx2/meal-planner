@@ -42,17 +42,6 @@ class CaloriePicker extends Component {
   render() {
     return (
       <div className="CaloriePicker__container">
-        <input
-          className="CaloriePicker__input"
-          ref={this.calorieInputRef}
-          type="number"
-          defaultValue={this.props.defaultValue}
-          onBlur={this.onNewCalorieValue}
-          step={PICKER_STEP_SIZE}
-          min={MIN_CAL_VALUE}
-          max={MAX_CAL_VALUE}
-          required
-        />
         <div className="CaloriePicker__arrowsContainer">
           <div
             className="CaloriePicker__inputArrowContainer"
@@ -67,6 +56,19 @@ class CaloriePicker extends Component {
             <div className="CaloriePicker__inputArrow CaloriePicker__inputArrow--down"/>
           </div>
         </div>
+        <input
+          className="CaloriePicker__input"
+          ref={this.calorieInputRef}
+          type="number"
+          pattern="\d*"
+          defaultValue={this.props.defaultValue}
+          onBlur={this.onNewCalorieValue}
+          step={PICKER_STEP_SIZE}
+          min={MIN_CAL_VALUE}
+          max={MAX_CAL_VALUE}
+          required
+        />
+        <span className="CaloriePicker__label">Calories</span>
       </div>
     );
   }

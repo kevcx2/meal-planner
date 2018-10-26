@@ -12,6 +12,14 @@
 .NutritionPicker__header {
   text-align: center;
   font-size: 32px;
+  padding: 10px 0px;
   /* CUSTOMIZE: light text color; */
   color: #585858;
+}
+
+/* Phone screen size styling */
+@media screen and (max-width: 500px) {
+  .NutritionPicker__header {
+    padding-top: 30px;
+  }
 }
