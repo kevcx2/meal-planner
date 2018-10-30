@@ -43,7 +43,7 @@
   margin-right: 12px;
   color: #e6e6e6;
   cursor: pointer;
-  transition: color .25s;
+  transition: color .2s;
 }
 
 .MenuItem__menuItemPreference svg {

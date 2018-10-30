@@ -3,3 +3,8 @@
   max-width: 1100px;
   margin: 0 auto 20px auto;
 }
+
+.Menu__suggestion {
+  height: 20px;
+  text-align: center;
+}

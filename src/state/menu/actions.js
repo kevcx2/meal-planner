@@ -60,7 +60,12 @@ export const createMenuActions = (provider) => ({
     provider.setState({
       mealPlan,
     });
-  }
+  },
+  setMealPlan: (mealPlan) => {
+    provider.setState({
+      mealPlan,
+    });
+  },
 });
 
 export default createMenuActions;

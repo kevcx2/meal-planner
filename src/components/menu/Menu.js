@@ -3,11 +3,11 @@ import React, { Component } from 'react';
 import { ContextConsumer } from '../../state/context';
 import MenuTabs from './MenuTabs';
 import MenuList from './MenuList';
+import MealPlanSuggestor from './MealPlanSuggestor';
+
+import { MENU_TAB } from '../../util/constants';
 
 import './Menu.css';
-
-// TODO: move these constants into separate file for sharing
-const MENU_TAB = 'Menu';
 
 class Menu extends Component {
   state = {
@@ -33,14 +33,20 @@ class Menu extends Component {
       <ContextConsumer>
         {(context) => {
           const {
+            menu: fullMenu,
+            goalCals,
+            goalProtein,
+            goalCarbs,
+            goalFat,
             mealPlan,
             toggleLike,
             toggleDislike,
             addToMealPlan,
             removeFromMealPlan,
+            setMealPlan
           } = context;
 
-          const menu = this.getMenuToDisplay(context.menu, mealPlan);
+          const displayMenu = this.getMenuToDisplay(fullMenu, mealPlan);
 
           return (
             <div className="Menu__container">
@@ -48,8 +54,21 @@ class Menu extends Component {
                 currentTab={this.state.currentTab}
                 onChange={this.onChangeTab}
               />
+              <div className="Menu__suggestion">
+                {this.state.currentTab === MENU_TAB ? null : (
+                  <MealPlanSuggestor
+                    menu={fullMenu}
+                    goalCals={goalCals}
+                    goalProtein={goalProtein}
+                    goalCarbs={goalCarbs}
+                    goalFat={goalFat}
+                    onSetMealPlan={setMealPlan}
+                    currentMealPlan={mealPlan}
+                  />
+                )}
+              </div>
               <MenuList
-                menu={menu}
+                menu={displayMenu}
                 mealPlan={mealPlan}
                 onLike={toggleLike}
                 onDislike={toggleDislike}

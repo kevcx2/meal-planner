@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 
 import MacroSelectionSlider from './MacroSelectionSlider';
 
-import './MacroPicker.css';
+import {
+  getGramsProtein,
+  getGramsCarbs,
+  getGramsFat,
+} from '../../util/macroUtils';
 
-const CALS_PER_GRAM_PROTEIN = 4;
-const CALS_PER_GRAM_CARBS = 4;
-const CALS_PER_GRAM_FAT = 9;
+import './MacroPicker.css';
 
 class MacroPicker extends Component {
   render() {
@@ -17,12 +19,9 @@ class MacroPicker extends Component {
       totalCalories,
     } = this.props;
 
-    const gramsProtein =
-      parseInt((totalCalories * (percentProtein / 100)) / CALS_PER_GRAM_PROTEIN, 10);
-    const gramsCarbs =
-      parseInt((totalCalories * (percentCarbs / 100)) / CALS_PER_GRAM_CARBS, 10);
-    const gramsFat =
-      parseInt((totalCalories * (percentFat / 100)) / CALS_PER_GRAM_FAT, 10);
+    const gramsProtein = getGramsProtein(totalCalories, percentProtein);
+    const gramsCarbs = getGramsCarbs(totalCalories, percentCarbs);
+    const gramsFat = getGramsFat(totalCalories, percentFat);
 
     return (
       <React.Fragment>

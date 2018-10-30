@@ -1,0 +1,11 @@
+.MealPlanSuggestor__trigger {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity .3s;
+  margin-left: 10px;
+}
+
+.MealPlanSuggestor__trigger--visible {
+  visibility: initial;
+  opacity: 1;
+}

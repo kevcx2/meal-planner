@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 
-import './MenuTabs.css';
+import { MENU_TAB, MEAL_PLAN_TAB } from '../../util/constants';
 
-const MENU_TAB = 'Menu';
-const MEAL_PLAN_TAB = 'My Meals';
+import './MenuTabs.css';
 
 class MenuTabs extends Component {
   render() {

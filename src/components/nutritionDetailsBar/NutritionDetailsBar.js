@@ -5,12 +5,13 @@ import ScrollLock from 'react-scrolllock';
 import { ContextConsumer } from '../../state/context';
 import NutritionPicker from './NutritionPicker';
 
-import './NutritionDetailsBar.css';
+import {
+  getGramsProtein,
+  getGramsCarbs,
+  getGramsFat,
+} from '../../util/macroUtils';
 
-// TODO: extract into a central constants file.
-const CALS_PER_GRAM_PROTEIN = 4;
-const CALS_PER_GRAM_CARBS = 4;
-const CALS_PER_GRAM_FAT = 9;
+import './NutritionDetailsBar.css';
 
 class NutritionDetailsBar extends Component {
   state = {
@@ -51,14 +52,10 @@ class NutritionDetailsBar extends Component {
     };
   }
 
-  // TODO: extract into util
   getMacroGramsFromPercent(cals, percentProtein, percentCarbs, percentFat) {
-    const gramsProtein =
-      parseInt((cals * (percentProtein / 100)) / CALS_PER_GRAM_PROTEIN, 10);
-    const gramsCarbs =
-      parseInt((cals * (percentCarbs / 100)) / CALS_PER_GRAM_CARBS, 10);
-    const gramsFat =
-      parseInt((cals * (percentFat / 100)) / CALS_PER_GRAM_FAT, 10);
+    const gramsProtein = getGramsProtein(cals, percentProtein);
+    const gramsCarbs = getGramsCarbs(cals, percentCarbs);
+    const gramsFat = getGramsFat(cals, percentFat);
 
     return {
       gramsProtein,
