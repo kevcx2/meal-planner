@@ -25,6 +25,7 @@
 }
 
 .MenuItem__menuItemNutrition {
+  /* CUSTOMIZE: light text */
   color:  #676767;
 }
 
@@ -33,7 +34,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top: 1px solid #d8d8d8;
+  /* CUSTOMIZE: light grey */
+  border-top: 1px solid #d8d8d8;;
   padding-top: 10px;
 }
 
@@ -41,7 +43,8 @@
   width: 32px;
   display: inline-block;
   margin-right: 12px;
-  color: #e6e6e6;
+  /* CUSTOMIZE: light grey */
+  color: #d8d8d8;
   cursor: pointer;
   transition: color .2s;
 }
@@ -51,10 +54,12 @@
 }
 
 .MenuItem__menuItemPreference:not(.MenuItem__menuItemPreference--active):hover {
+  /* CUSTOMIZE: dark grey */
   color: #b9b9b9;
 }
 
 .MenuItem__menuItemPreference--active {
+  /* CUSTOMIZE: primary color */
   color: #da7b55;
 }
 

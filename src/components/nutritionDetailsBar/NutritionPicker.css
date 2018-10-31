@@ -5,16 +5,16 @@
   display: inline;
   float: right;
   font-weight: bold;
-  /* CUSTOMIZE: light text color; */
-  color: #585858;
+  /* CUSTOMIZE: light text */
+  color:  #676767;
 }
 
 .NutritionPicker__header {
   text-align: center;
   font-size: 32px;
   padding: 10px 0px;
-  /* CUSTOMIZE: light text color; */
-  color: #585858;
+  /* CUSTOMIZE: light text */
+  color:  #676767;
 }
 
 /* Phone screen size styling */

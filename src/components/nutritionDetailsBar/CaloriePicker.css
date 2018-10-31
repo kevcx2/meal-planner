@@ -50,6 +50,7 @@
 
 .CaloriePicker__label {
   font-size: 21px;
-  color: #585858;
+  /* CUSTOMIZE: light text */
+  color: #676767;
   font-weight: bold;
 }

@@ -14,10 +14,6 @@
   cursor: pointer;
 }
 
-.MenuTabs__tab--active {
-  /*border-bottom: 1px solid #da7b55;*/
-}
-
 .MenuTabs__tab:nth-of-type(1) {
   position: relative;
 }
