@@ -1,3 +1,5 @@
+import { createMenuItem, getNextDefaultId, getNextCustomId } from '../../util/menu';
+
 export const createMenuActions = (provider) => ({
   toggleLike: (menuItemId) => {
     const currentMenuState = provider.state.menu;
@@ -66,6 +68,35 @@ export const createMenuActions = (provider) => ({
       mealPlan,
     });
   },
+  addCustomMeal: (name, cals, protein, carbs, fat) => {
+    provider.setState((state) => {
+      debugger;
+      const currentMenuState = state.menu || [];
+      const menuState = [ ...currentMenuState ];
+      const id = getNextCustomId(menuState);
+      const newItem = createMenuItem(id, name, cals, protein, carbs, fat);
+      menuState.unshift(newItem);
+
+      debugger;
+
+      return {
+        menu: menuState,
+      };
+    });
+  },
+  addDefaultMeal: (name, cals, protein, carbs, fat) => {
+    provider.setState((state) => {
+      const currentMenuState = state.menu || [];
+      const menuState = [ ...currentMenuState ];
+      const id = getNextDefaultId(menuState);
+      const newItem = createMenuItem(id, name, cals, protein, carbs, fat);
+      menuState.push(newItem);
+
+      return {
+        menu: menuState,
+      };
+    });
+  }
 });
 
 export default createMenuActions;

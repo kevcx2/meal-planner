@@ -24,6 +24,8 @@ class MenuTabs extends Component {
         <div
           className={mealPlanTabClass}
           onClick={() => this.props.onChange(MEAL_PLAN_TAB)}
+          data-step="5"
+          data-intro="This tab is where you will see the items you have added to your meal plan. Enjoy!"
         >
           {MEAL_PLAN_TAB}
         </div>  

@@ -121,7 +121,7 @@ export const createMealPlan = (
     const mealList = [];
     Object.keys(results).forEach((mealId) => {
       if (results[mealId] > 0) {
-        mealList.push(parseInt(mealId, 10));
+        mealList.push(mealId);
       }
     });
 

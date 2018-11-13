@@ -1,0 +1,20 @@
+.CustomMealCreator__createPrompt {
+  cursor: pointer;
+  opacity: .7;
+  height: 330px;
+}
+
+.CustomMealCreator__createPrompt:hover {
+  opacity: .6;
+}
+
+.CustomMealCreator__plusIcon {
+  font-size: 200px;
+  text-align: center;
+  height: 210px;
+}
+
+.CustomMealCreator__label {
+  text-align: center;
+  font-size: 24px;
+}

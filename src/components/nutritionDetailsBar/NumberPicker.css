@@ -1,0 +1,83 @@
+.NumberPicker__container {
+  padding-bottom: 10px;
+}
+
+.NumberPicker__input {
+  font-size: 46px;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid black;
+  border-radius: 0px;
+  padding: 0px 12px;
+  width: 112px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.NumberPicker__input::-webkit-outer-spin-button,
+.NumberPicker__input::-webkit-inner-spin-button {
+  appearance: none;
+  margin: 0;
+}
+
+.NumberPicker__input--small {
+  width: 70px;
+  font-size: 18px;
+}
+
+.NumberPicker__arrowsContainer {
+  display: inline-block;
+  margin-bottom: -19px;
+}
+
+.NumberPicker__inputArrowContainer {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.NumberPicker__inputArrowContainer--small {
+  padding: 5px 10px 5px 5px;
+}
+
+.NumberPicker__inputArrowContainer--small .NumberPicker__inputArrow--up {
+  border-width: 0 6px 12px 6px;
+}
+
+.NumberPicker__inputArrowContainer--small .NumberPicker__inputArrow--down {
+  border-width: 12px 6px 0 6px;
+}
+
+@media only screen and (max-width: 767px) {
+  .NumberPicker__inputArrowContainer--small {
+    display: none;
+  }
+}
+
+.NumberPicker__inputArrow {
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
+
+.NumberPicker__inputArrow--up {
+  border-width: 0 8px 16px 8px;
+  /* CUSTOMIZE: primary color */
+  border-color: transparent transparent #da7b55 transparent;
+}
+
+.NumberPicker__inputArrow--down {
+  border-width: 16px 8px 0 8px;
+  /* CUSTOMIZE: primary color */
+  border-color: #da7b55 transparent transparent transparent;
+}
+
+.NumberPicker__label {
+  font-size: 21px;
+  /* CUSTOMIZE: light text */
+  color: #676767;
+  font-weight: bold;
+}
+
+.NumberPicker__label--small {
+  font-size: 18px;
+}

@@ -20,6 +20,11 @@
   opacity: .8;
 }
 
+.button:disabled {
+  opacity: .5;
+  cursor: initial;
+}
+
 .button--secondary {
   background-color: transparent;
   /* CUSTOMIZE: primary color */

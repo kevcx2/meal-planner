@@ -45,7 +45,10 @@ class MenuItem extends Component {
 
     return (
       <div className="MenuItem__menuItemFooter">
-        <div>
+        <div
+          data-step={this.props.withToolTip ? '3' : undefined}
+          data-intro={this.props.withToolTip ? 'Here you can like or dislike meals. This will help us suggest a personalized meal plan for you! 👍' : undefined}
+        >
           <div className={thumbsUpIconClass} onClick={() => this.props.onLike(menuItem.id)}>
             <ThumbIcon />
           </div>

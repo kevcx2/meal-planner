@@ -88,11 +88,16 @@ class NutritionDetailsBar extends Component {
               {this.state.showNutritionPicker ? (
                 <ScrollLock />
               ) : null}
-              <div className={barClass} onClick={this.onOpenNutritionPicker}>
+              <div
+                className={barClass}
+                onClick={this.onOpenNutritionPicker}
+                data-step="1"
+                data-intro="Here is your daily nutrition target. Here you can adjust your goal nutrition. 💪"
+                data-tooltipclass="NutritionDetailsBar__introTooltip"
+              >
                 {this.renderGoalNutritionRow(goalCals, goalProtein, goalCarbs, goalFat)}
                 {this.renderMealPlanNutritionRow(mealPlan, menu)}
                 {this.renderNutritionColumnLabels()}
-                <div></div>
               </div>
               <Popup
                 trigger={(<div className="NutritionDetailsBar__fixedSpacer"></div>)}

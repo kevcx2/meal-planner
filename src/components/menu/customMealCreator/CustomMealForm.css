@@ -1,0 +1,48 @@
+.CustomMealForm__cancelButtonContainer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.CustomMealForm__cancelButton {
+  color: #676767;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0px 10px 0px 10px;
+}
+
+.CustomMealForm__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 320px;
+}
+
+.CustomMealForm__inputGroup {
+  /*margin-bot: 5px 0px 15px 0px;*/
+}
+
+.CustomMealForm__input {
+  border-radius: 0px;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid black;
+  width: 100%;
+  font-size: 20px;
+}
+
+.CustomMealForm__label {
+  font-size: 18px;
+  color: #676767;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.CustomMealForm__buttonContainer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.CustomMealForm__button {
+  width: 75px;
+}

@@ -98,3 +98,9 @@
     padding: 10px !important;
   }
 }
+
+/* intro.js customization */
+.NutritionDetailsBar__introTooltip {
+  left: 50vw !important;
+  transform: translateX(-50%);
+}
