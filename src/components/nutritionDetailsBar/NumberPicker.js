@@ -8,13 +8,13 @@ class NumberPicker extends Component {
     this.calorieInputRef = React.createRef();
   }
 
-  onStepCalories = (stepAmount) => {
+  onStepCalories = stepAmount => {
     const calorieInputEl = this.calorieInputRef.current;
     const currentCalorieValue = parseInt(calorieInputEl.value, 10);
 
     calorieInputEl.value = currentCalorieValue + stepAmount;
     this.onNewCalorieValue();
-  }
+  };
 
   onNewCalorieValue = () => {
     const calorieInputEl = this.calorieInputRef.current;
@@ -33,13 +33,19 @@ class NumberPicker extends Component {
     }
 
     this.props.onChange(value);
-  }
+  };
 
   render() {
     const isSmall = this.props.small;
-    const arrowContainerClass = `NumberPicker__inputArrowContainer${isSmall ? ' NumberPicker__inputArrowContainer--small' : ''}`;
-    const inputClass = `NumberPicker__input${isSmall ? ' NumberPicker__input--small' : ''}`;
-    const labelClass = `NumberPicker__label${isSmall ? ' NumberPicker__label--small' : ''}`;
+    const arrowContainerClass = `NumberPicker__inputArrowContainer${
+      isSmall ? ' NumberPicker__inputArrowContainer--small' : ''
+    }`;
+    const inputClass = `NumberPicker__input${
+      isSmall ? ' NumberPicker__input--small' : ''
+    }`;
+    const labelClass = `NumberPicker__label${
+      isSmall ? ' NumberPicker__label--small' : ''
+    }`;
 
     return (
       <div className="NumberPicker__container">
@@ -48,13 +54,13 @@ class NumberPicker extends Component {
             className={arrowContainerClass}
             onClick={() => this.onStepCalories(this.props.stepSize)}
           >
-            <div className="NumberPicker__inputArrow NumberPicker__inputArrow--up"/>
+            <div className="NumberPicker__inputArrow NumberPicker__inputArrow--up" />
           </div>
           <div
             className={arrowContainerClass}
             onClick={() => this.onStepCalories(-this.props.stepSize)}
           >
-            <div className="NumberPicker__inputArrow NumberPicker__inputArrow--down"/>
+            <div className="NumberPicker__inputArrow NumberPicker__inputArrow--down" />
           </div>
         </div>
         <input

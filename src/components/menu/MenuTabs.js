@@ -28,7 +28,7 @@ class MenuTabs extends Component {
           data-intro="This tab is where you will see the items you have added to your meal plan. Enjoy!"
         >
           {MEAL_PLAN_TAB}
-        </div>  
+        </div>
       </div>
     );
   }

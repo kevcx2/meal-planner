@@ -26,9 +26,9 @@ class MacroPicker extends Component {
     return (
       <React.Fragment>
         <div className="MacroPicker__macroSectionsContainer">
-        {this.renderMacroSection('Protein', percentProtein, gramsProtein)}
-        {this.renderMacroSection('Carbs', percentCarbs, gramsCarbs)}
-        {this.renderMacroSection('Fat', percentFat, gramsFat)}
+          {this.renderMacroSection('Protein', percentProtein, gramsProtein)}
+          {this.renderMacroSection('Carbs', percentCarbs, gramsCarbs)}
+          {this.renderMacroSection('Fat', percentFat, gramsFat)}
         </div>
         <MacroSelectionSlider
           percentProtein={percentProtein}
@@ -36,15 +36,13 @@ class MacroPicker extends Component {
           onChange={this.props.onChange}
         />
       </React.Fragment>
-    )
+    );
   }
 
   renderMacroSection(title, percentMacro, gramsMacro) {
     return (
       <div className="MacroPicker__macroSection">
-        <div className="MacroPicker__macroSectionTitle">
-          {title}
-        </div>
+        <div className="MacroPicker__macroSectionTitle">{title}</div>
         <div>{`${percentMacro}%`}</div>
         <div>{`${gramsMacro}g`}</div>
       </div>

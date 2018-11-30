@@ -15,48 +15,48 @@ import './Menu.css';
 class Menu extends Component {
   state = {
     currentTab: MENU_TAB,
-  }
+  };
 
   componentDidMount() {
-    const beforeStepChange = (el) => {
+    const onIntroStepChange = el => {
       if (el.dataset.step === '4') {
         this.onChangeTab(MEAL_PLAN_TAB);
       }
-    }
+    };
 
-    const onExit = () => {
+    const onIntroExit = () => {
       this.onChangeTab(MENU_TAB);
-    }
+    };
 
     const startIntro = () => {
       introJs()
         .setOption('showStepNumbers', false)
-        .onbeforechange(beforeStepChange)
-        .onexit(onExit)
+        .onbeforechange(onIntroStepChange)
+        .onexit(onIntroExit)
         .start();
-    }
+    };
 
     setTimeout(startIntro, 0);
   }
 
-  onChangeTab = (tabName) => {
+  onChangeTab = tabName => {
     this.setState({
       currentTab: tabName,
     });
-  }
+  };
 
   getMenuToDisplay = (fullMenu, mealPlan) => {
     if (this.state.currentTab === MENU_TAB) {
       return fullMenu;
     } else {
-      return fullMenu.filter((menuItem => mealPlan.includes(menuItem.id)));
+      return fullMenu.filter(menuItem => mealPlan.includes(menuItem.id));
     }
-  }
+  };
 
   render() {
     return (
       <ContextConsumer>
-        {(context) => {
+        {context => {
           const {
             menu: fullMenu,
             goalCals,
@@ -69,7 +69,7 @@ class Menu extends Component {
             addToMealPlan,
             removeFromMealPlan,
             addCustomMeal,
-            setMealPlan
+            setMealPlan,
           } = context;
 
           const displayMenu = this.getMenuToDisplay(fullMenu, mealPlan);
@@ -97,18 +97,18 @@ class Menu extends Component {
                   />
                 )}
               </div>
-                <FadeIn>
-                  <MenuList
-                    currentTab={this.state.currentTab}
-                    menu={displayMenu}
-                    mealPlan={mealPlan}
-                    onLike={toggleLike}
-                    onDislike={toggleDislike}
-                    onAddToMealPlan={addToMealPlan}
-                    onRemoveFromMealPlan={removeFromMealPlan}
-                    onAddCustomMeal={addCustomMeal}
-                  />
-                </FadeIn>
+              <FadeIn>
+                <MenuList
+                  currentTab={this.state.currentTab}
+                  menu={displayMenu}
+                  mealPlan={mealPlan}
+                  onLike={toggleLike}
+                  onDislike={toggleDislike}
+                  onAddToMealPlan={addToMealPlan}
+                  onRemoveFromMealPlan={removeFromMealPlan}
+                  onAddCustomMeal={addCustomMeal}
+                />
+              </FadeIn>
             </div>
           );
         }}

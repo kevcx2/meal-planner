@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import NumberPicker from './NumberPicker';
-import MacroPicker from './MacroPicker';  
+import MacroPicker from './MacroPicker';
 
 import './NutritionPicker.css';
 
@@ -23,7 +23,9 @@ class NutritionPicker extends Component {
 
     return (
       <div>
-        <div className="NutritionPicker__closePopup" onClick={onClose}>X</div>
+        <div className="NutritionPicker__closePopup" onClick={onClose}>
+          X
+        </div>
         <div className="NutritionPicker__header">Set Nutrition Goal</div>
         <NumberPicker
           defaultValue={cals}

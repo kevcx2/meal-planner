@@ -10,13 +10,13 @@ import './CustomMealCreator.css';
 class CustomMealCreator extends Component {
   state = {
     showForm: false,
-  }
+  };
 
   toggleFormDisplay = () => {
     this.setState({
       showForm: !this.state.showForm,
     });
-  }
+  };
 
   render() {
     return (
@@ -40,12 +40,13 @@ class CustomMealCreator extends Component {
   renderCreatePrompt() {
     return (
       <div>
-      <div className="CustomMealCreator__createPrompt" onClick={this.toggleFormDisplay}>
-        <div className="CustomMealCreator__plusIcon">
-          +
+        <div
+          className="CustomMealCreator__createPrompt"
+          onClick={this.toggleFormDisplay}
+        >
+          <div className="CustomMealCreator__plusIcon">+</div>
+          <div className="CustomMealCreator__label">Custom Meal</div>
         </div>
-        <div className="CustomMealCreator__label">Custom Meal</div>
-      </div>
       </div>
     );
   }

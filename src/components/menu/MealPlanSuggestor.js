@@ -33,14 +33,17 @@ class MealPlanSuggestor extends Component {
 
   onSetMealPlan = () => {
     this.props.onSetMealPlan(this.state.mealPlan);
-  }
+  };
 
   render() {
     const suggestedMealPlan = this.state.mealPlan;
-    const showSuggestion = 
+    const showSuggestion =
       suggestedMealPlan &&
-      suggestedMealPlan.sort().toString() !== this.props.currentMealPlan.sort().toString();
-    const visibleClass = showSuggestion ? ' MealPlanSuggestor__trigger--visible' : '';
+      suggestedMealPlan.sort().toString() !==
+        this.props.currentMealPlan.sort().toString();
+    const visibleClass = showSuggestion
+      ? ' MealPlanSuggestor__trigger--visible'
+      : '';
 
     return (
       <div

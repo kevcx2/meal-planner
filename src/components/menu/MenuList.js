@@ -9,7 +9,6 @@ import { MENU_TAB } from '../../util/constants';
 import './MenuList.css';
 import 'react-simple-flex-grid/lib/main.css';
 
-
 class MenuList extends Component {
   render() {
     return (
@@ -32,16 +31,19 @@ class MenuList extends Component {
 
     return (
       <Col xs={12} sm={4} md={3}>
-        <CustomMealCreator
-          onAddCustomMeal={this.props.onAddCustomMeal}
-        />
+        <CustomMealCreator onAddCustomMeal={this.props.onAddCustomMeal} />
       </Col>
     );
   }
 
   renderMenuItems() {
     return this.props.menu.map((menuItem, idx) => {
-      const { onAddToMealPlan, onRemoveFromMealPlan, onLike, onDislike } = this.props;
+      const {
+        onAddToMealPlan,
+        onRemoveFromMealPlan,
+        onLike,
+        onDislike,
+      } = this.props;
       const isInMealPlan = this.props.mealPlan.includes(menuItem.id);
 
       return (
@@ -53,7 +55,7 @@ class MenuList extends Component {
             onRemoveFromMealPlan={onRemoveFromMealPlan}
             onLike={onLike}
             onDislike={onDislike}
-            withToolTip={idx===0}
+            withToolTip={idx === 0}
           />
         </Col>
       );

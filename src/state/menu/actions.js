@@ -1,14 +1,18 @@
-import { createMenuItem, getNextDefaultId, getNextCustomId } from '../../util/menu';
+import {
+  createMenuItem,
+  getNextDefaultId,
+  getNextCustomId,
+} from '../../util/menu';
 
-export const createMenuActions = (provider) => ({
-  toggleLike: (menuItemId) => {
+export const createMenuActions = provider => ({
+  toggleLike: menuItemId => {
     const currentMenuState = provider.state.menu;
     const menuItemIndex = currentMenuState.findIndex(
-      (menuItem) => menuItem.id === menuItemId
+      menuItem => menuItem.id === menuItemId
     );
     if (menuItemIndex === -1) return;
 
-    const menuState = [ ...currentMenuState ];
+    const menuState = [...currentMenuState];
     const menuItem = menuState[menuItemIndex];
 
     if (menuItem.liked) {
@@ -26,14 +30,14 @@ export const createMenuActions = (provider) => ({
       });
     }
   },
-  toggleDislike: (menuItemId) => {
+  toggleDislike: menuItemId => {
     const currentMenuState = provider.state.menu;
     const menuItemIndex = currentMenuState.findIndex(
-      (menuItem) => menuItem.id === menuItemId
+      menuItem => menuItem.id === menuItemId
     );
     if (menuItemIndex === -1) return;
 
-    const menuState = [ ...currentMenuState ];
+    const menuState = [...currentMenuState];
     const menuItem = menuState[menuItemIndex];
 
     if (menuItem.disliked) {
@@ -51,28 +55,30 @@ export const createMenuActions = (provider) => ({
       });
     }
   },
-  addToMealPlan: (menuItemId) => {
+  addToMealPlan: menuItemId => {
     provider.setState({
       mealPlan: provider.state.mealPlan.concat([menuItemId]),
     });
   },
-  removeFromMealPlan: (menuItemId) => {
-    const currentMealPlan = [ ...provider.state.mealPlan ];
-    const mealPlan = currentMealPlan.filter((mealPlanItemId) => mealPlanItemId !== menuItemId);
+  removeFromMealPlan: menuItemId => {
+    const currentMealPlan = [...provider.state.mealPlan];
+    const mealPlan = currentMealPlan.filter(
+      mealPlanItemId => mealPlanItemId !== menuItemId
+    );
     provider.setState({
       mealPlan,
     });
   },
-  setMealPlan: (mealPlan) => {
+  setMealPlan: mealPlan => {
     provider.setState({
       mealPlan,
     });
   },
   addCustomMeal: (name, cals, protein, carbs, fat) => {
-    provider.setState((state) => {
+    provider.setState(state => {
       debugger;
       const currentMenuState = state.menu || [];
-      const menuState = [ ...currentMenuState ];
+      const menuState = [...currentMenuState];
       const id = getNextCustomId(menuState);
       const newItem = createMenuItem(id, name, cals, protein, carbs, fat);
       menuState.unshift(newItem);
@@ -85,9 +91,9 @@ export const createMenuActions = (provider) => ({
     });
   },
   addDefaultMeal: (name, cals, protein, carbs, fat) => {
-    provider.setState((state) => {
+    provider.setState(state => {
       const currentMenuState = state.menu || [];
-      const menuState = [ ...currentMenuState ];
+      const menuState = [...currentMenuState];
       const id = getNextDefaultId(menuState);
       const newItem = createMenuItem(id, name, cals, protein, carbs, fat);
       menuState.push(newItem);
@@ -96,7 +102,7 @@ export const createMenuActions = (provider) => ({
         menu: menuState,
       };
     });
-  }
+  },
 });
 
 export default createMenuActions;

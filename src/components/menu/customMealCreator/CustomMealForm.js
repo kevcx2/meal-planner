@@ -12,13 +12,13 @@ class CustomMealForm extends Component {
     protein: undefined,
     carbs: undefined,
     fat: undefined,
-  }
+  };
 
   onUpdateNutrition = (key, value) => {
     this.setState({
       [key]: value,
     });
-  }
+  };
 
   onAddCustomMeal = () => {
     console.log(this.state);
@@ -28,11 +28,11 @@ class CustomMealForm extends Component {
       this.state.cals,
       this.state.protein,
       this.state.carbs,
-      this.state.fat,
+      this.state.fat
     );
 
     this.onExitForm();
-  }
+  };
 
   onExitForm = () => {
     this.setState({
@@ -44,9 +44,9 @@ class CustomMealForm extends Component {
     });
 
     this.props.onExitForm();
-  }
+  };
 
-  render(){
+  render() {
     const canSave =
       this.state.name &&
       this.state.cals &&
@@ -57,13 +57,18 @@ class CustomMealForm extends Component {
     return (
       <div className="CustomMealForm__container">
         <div className="CustomMealForm__cancelButtonContainer">
-          <div className="CustomMealForm__cancelButton" onClick={this.onExitForm}>X</div>
+          <div
+            className="CustomMealForm__cancelButton"
+            onClick={this.onExitForm}
+          >
+            X
+          </div>
         </div>
         <div>
           {this.renderNameInput()}
           <NumberPicker
             defaultValue={this.state.cals}
-            onChange={(val) => this.onUpdateNutrition('cals', val)}
+            onChange={val => this.onUpdateNutrition('cals', val)}
             minVal={0}
             maxVal={5000}
             stepSize={10}
@@ -72,7 +77,7 @@ class CustomMealForm extends Component {
           />
           <NumberPicker
             defaultValue={this.state.protein}
-            onChange={(val) => this.onUpdateNutrition('protein', val)}
+            onChange={val => this.onUpdateNutrition('protein', val)}
             minVal={0}
             maxVal={500}
             stepSize={1}
@@ -81,7 +86,7 @@ class CustomMealForm extends Component {
           />
           <NumberPicker
             defaultValue={this.state.carbs}
-            onChange={(val) => this.onUpdateNutrition('carbs', val)}
+            onChange={val => this.onUpdateNutrition('carbs', val)}
             minVal={0}
             maxVal={500}
             stepSize={1}
@@ -90,7 +95,7 @@ class CustomMealForm extends Component {
           />
           <NumberPicker
             defaultValue={this.state.fat}
-            onChange={(val) => this.onUpdateNutrition('fat', val)}
+            onChange={val => this.onUpdateNutrition('fat', val)}
             minVal={0}
             maxVal={500}
             stepSize={1}
@@ -111,12 +116,12 @@ class CustomMealForm extends Component {
     );
   }
 
-  renderNameInput(){
+  renderNameInput() {
     return (
       <div className="CustomMealForm__inputGroup">
         <input
           value={this.state.name}
-          onChange={(event) => this.onUpdateNutrition('name', event.target.value)}
+          onChange={event => this.onUpdateNutrition('name', event.target.value)}
           type="text"
           className="CustomMealForm__input"
         />

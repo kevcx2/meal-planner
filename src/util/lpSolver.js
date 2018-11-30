@@ -1,14 +1,10 @@
 import solver from 'javascript-lp-solver';
 
-import {
-  getGramsProtein,
-  getGramsCarbs,
-  getGramsFat,
-} from './macroUtils';
+import { getGramsProtein, getGramsCarbs, getGramsFat } from './macroUtils';
 
 const LOW_PRIORITY_VALUE = 100;
 const NO_PRIORITY_VALUE = 50;
-const HIGH_PRIORITY_VALUE =  1;
+const HIGH_PRIORITY_VALUE = 1;
 
 const CALORIE_MAX_PADDING = 100;
 const CALORIE_MIN_PADDING = 200;
@@ -19,13 +15,14 @@ const getConstraints = (
   goalProteinPercentage,
   goalCarbsPercentage,
   goalFatPercentage,
-  noRepeats,
+  noRepeats
 ) => {
   const maxCals = goalCals + CALORIE_MAX_PADDING;
   const minCals = goalCals - CALORIE_MIN_PADDING;
   const constraints = {
     cals: {
-      min: minCals , max: maxCals
+      min: minCals,
+      max: maxCals,
     },
     protein: {
       min: getGramsProtein(minCals, goalProteinPercentage),
@@ -46,18 +43,18 @@ const getConstraints = (
   };
 
   if (noRepeats) {
-    menu.forEach((menuItem) => {
+    menu.forEach(menuItem => {
       constraints[menuItem.id] = { max: 1 };
-    })
+    });
   }
 
   return constraints;
 };
 
-const getVariables = (menu) => {
+const getVariables = menu => {
   const variables = {};
 
-  menu.forEach((menuItem) => {
+  menu.forEach(menuItem => {
     variables[menuItem.id] = menuItem;
 
     if (menuItem.liked) {
@@ -75,22 +72,22 @@ const getVariables = (menu) => {
   });
 
   return variables;
-}
+};
 
-const getInts = (menu) => {
+const getInts = menu => {
   const ints = {};
-  menu.forEach((menuItem) => {
-    ints[menuItem.id] = 1
+  menu.forEach(menuItem => {
+    ints[menuItem.id] = 1;
   });
   return ints;
-}
+};
 
 export const createMealPlan = (
   menu,
   goalCals,
   goalProteinPercentage,
   goalCarbsPercentage,
-  goalFatPercentage,
+  goalFatPercentage
 ) => {
   const constraints = getConstraints(
     menu,
@@ -98,14 +95,14 @@ export const createMealPlan = (
     goalProteinPercentage,
     goalCarbsPercentage,
     goalFatPercentage,
-    true,
+    true
   );
   const variables = getVariables(menu);
   const ints = getInts(menu);
 
   const model = {
-    optimize: "priority",
-    opType: "min",
+    optimize: 'priority',
+    opType: 'min',
     constraints,
     variables,
     ints,
@@ -119,14 +116,12 @@ export const createMealPlan = (
     delete results.result;
 
     const mealList = [];
-    Object.keys(results).forEach((mealId) => {
+    Object.keys(results).forEach(mealId => {
       if (results[mealId] > 0) {
         mealList.push(mealId);
       }
     });
 
     return mealList;
-  }
-
-  else return undefined;
+  } else return undefined;
 };

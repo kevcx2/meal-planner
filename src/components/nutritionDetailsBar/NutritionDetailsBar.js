@@ -22,13 +22,13 @@ class NutritionDetailsBar extends Component {
     this.setState({
       showNutritionPicker: true,
     });
-  }
+  };
 
   onCloseNutritionPicker = () => {
     this.setState({
       showNutritionPicker: false,
     });
-  }
+  };
 
   getMealPlanNutrition(mealPlan, menu) {
     let mealPlanCals = 0;
@@ -36,8 +36,8 @@ class NutritionDetailsBar extends Component {
     let mealPlanCarbs = 0;
     let mealPlanFat = 0;
 
-    mealPlan.forEach((mealId) => {
-      const meal = menu.find((menuItem) => menuItem.id === mealId);
+    mealPlan.forEach(mealId => {
+      const meal = menu.find(menuItem => menuItem.id === mealId);
       mealPlanCals += meal.cals;
       mealPlanProtein += meal.protein;
       mealPlanCarbs += meal.carbs;
@@ -67,7 +67,7 @@ class NutritionDetailsBar extends Component {
   render() {
     return (
       <ContextConsumer>
-        {(context) => {
+        {context => {
           const {
             goalCals,
             goalProtein,
@@ -80,14 +80,13 @@ class NutritionDetailsBar extends Component {
           } = context;
           const hasMealPlan = !!mealPlan.length;
 
-          const barClass =
-            `NutritionDetailsBar__bar${hasMealPlan ? ' NutritionDetailsBar__bar--large' : ''}`;
+          const barClass = `NutritionDetailsBar__bar${
+            hasMealPlan ? ' NutritionDetailsBar__bar--large' : ''
+          }`;
 
           return (
             <div>
-              {this.state.showNutritionPicker ? (
-                <ScrollLock />
-              ) : null}
+              {this.state.showNutritionPicker ? <ScrollLock /> : null}
               <div
                 className={barClass}
                 onClick={this.onOpenNutritionPicker}
@@ -95,18 +94,23 @@ class NutritionDetailsBar extends Component {
                 data-intro="Here is your daily nutrition target. Here you can adjust your goal nutrition. 💪"
                 data-tooltipclass="NutritionDetailsBar__introTooltip"
               >
-                {this.renderGoalNutritionRow(goalCals, goalProtein, goalCarbs, goalFat)}
+                {this.renderGoalNutritionRow(
+                  goalCals,
+                  goalProtein,
+                  goalCarbs,
+                  goalFat
+                )}
                 {this.renderMealPlanNutritionRow(mealPlan, menu)}
                 {this.renderNutritionColumnLabels()}
               </div>
               <Popup
-                trigger={(<div className="NutritionDetailsBar__fixedSpacer"></div>)}
+                trigger={<div className="NutritionDetailsBar__fixedSpacer" />}
                 className="NutritionDetailsBar__nutritionPopup"
                 open={this.state.showNutritionPicker}
                 onClose={this.onCloseNutritionPicker}
                 modal
               >
-                {(onClose) => (
+                {onClose => (
                   <NutritionPicker
                     onClose={onClose}
                     cals={goalCals}
@@ -115,7 +119,7 @@ class NutritionDetailsBar extends Component {
                     fat={goalFat}
                     onChangeCals={changeGoalCals}
                     onChangeMacros={changeGoalMacros}
-                  />             
+                  />
                 )}
               </Popup>
             </div>
@@ -129,15 +133,20 @@ class NutritionDetailsBar extends Component {
     const {
       gramsProtein: goalGramsProtein,
       gramsCarbs: goalGramsCarbs,
-      gramsFat: goalGramsFat
-    } = this.getMacroGramsFromPercent(goalCals, goalProtein, goalCarbs, goalFat);
+      gramsFat: goalGramsFat,
+    } = this.getMacroGramsFromPercent(
+      goalCals,
+      goalProtein,
+      goalCarbs,
+      goalFat
+    );
 
     return this.renderNutritionRow(
       goalCals,
       goalGramsProtein,
       goalGramsCarbs,
       goalGramsFat,
-      'Goal: ',
+      'Goal: '
     );
   }
 
@@ -149,7 +158,7 @@ class NutritionDetailsBar extends Component {
         mealPlanCals,
         mealPlanProtein,
         mealPlanCarbs,
-        mealPlanFat
+        mealPlanFat,
       } = this.getMealPlanNutrition(mealPlan, menu);
 
       return this.renderNutritionRow(
@@ -157,7 +166,7 @@ class NutritionDetailsBar extends Component {
         mealPlanProtein,
         mealPlanCarbs,
         mealPlanFat,
-        'My Meals: ',
+        'My Meals: '
       );
     } else {
       return null;
@@ -179,10 +188,10 @@ class NutritionDetailsBar extends Component {
   }
 
   renderNutritionColumnLabels() {
-    return(
+    return (
       <div className="NutritionDetailsBar__row NutritionDetailsBar__row--columnLabels">
         <div className="NutritionDetailsBar__rowContainer NutritionDetailsBar__rowContainer--columnLabels">
-          <div className="NutritionDetailsBar__rowLabel"></div>
+          <div className="NutritionDetailsBar__rowLabel" />
           {this.renderNutritionDisplaySection('Calories')}
           {this.renderNutritionDisplaySection('Protein')}
           {this.renderNutritionDisplaySection('Carbs')}
